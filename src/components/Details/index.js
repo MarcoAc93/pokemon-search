@@ -1,43 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Panel, Grid, Row, Col, Tag } from 'rsuite';
+import { bindActionCreators } from 'redux';
+import { Panel, Grid, Row, Col, Tag, Icon } from 'rsuite';
+import * as FavoritesActions from '../../actions/pokemon';
 
 import './styles.css'
 
-const Details = ({ pokemon }) => {
+const Details = ({ pokemon, addToFavorite, favorites }) => {
   if (!pokemon.name || pokemon.name === '') return null;
+
+  const isFavorite = () => favorites.find(fav => fav.name === pokemon.name);
+  const fav = isFavorite();
 
   return (
     <Grid>
       <Row className="details__centered">
         <Col xs={12}>
           <Panel header="Details" bordered style={{ display: 'flex', flexDirection: 'column' }}>
-            <img src={pokemon.sprites.front_default} />
-            <h4>Name</h4>
-            <Tag>{pokemon.name}</Tag>
+            <div onClick={() => addToFavorite(pokemon)}>
+              <Icon icon="star" size="2x" style={{ color: fav ? 'gold' : 'gray' }} />
+            </div>
+            <div>
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+              <h4>Name</h4>
+              <Tag>{pokemon.name}</Tag>
 
-            <h4>Abilities</h4>
-            {pokemon.abilities.map(ability => (
-              <>
-                <Tag>{ability.ability.name}</Tag>
-              </>
-            ))}
+              <h4>Abilities</h4>
+              {pokemon.abilities.map((ability, index) => (
+                <div key={index}>
+                  <Tag>{ability.ability.name}</Tag>
+                </div>
+              ))}
 
-            <h4>Height</h4>
-            <Tag>{pokemon.height}</Tag>
+              <h4>Height</h4>
+              <Tag>{pokemon.height}</Tag>
 
-            <h4>Weight</h4>
-            <Tag>{pokemon.weight}</Tag>
+              <h4>Weight</h4>
+              <Tag>{pokemon.weight}</Tag>
 
-            <h4>Stats</h4>
-            {pokemon.stats.map(stat => (
-              <>
-                <p>
-                  {stat.stat.name}
-                  <Tag>{stat.base_stat}</Tag>
-                </p>
-              </>
-            ))}
+              <h4>Stats</h4>
+              {pokemon.stats.map((stat, index) => (
+                <div key={index}>
+                  <p>
+                    {stat.stat.name}
+                    <Tag>{stat.base_stat}</Tag>
+                  </p>
+                </div>
+              ))}
+            </div>
           </Panel>
         </Col>
       </Row>
@@ -45,6 +55,11 @@ const Details = ({ pokemon }) => {
   );
 };
 
-const mapStateToProps = state => ({ pokemon: state.favorites.pokemon });
+const mapStateToProps = state => ({
+  pokemon: state.favorites.pokemon,
+  favorites: state.favorites.favorites,
+});
 
-export default connect(mapStateToProps)(Details);
+const mapDispatchToProps = dispatch => bindActionCreators(FavoritesActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details);

@@ -17,12 +17,16 @@ const favoritesReducer = (state = initialState, action) => {
     case ADD_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.push(action.payload)
+        error: {
+          show: false,
+          message: ''
+        },
+        favorites: [...state.favorites, action.payload],
       };
     case REMOVE_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.filter(fav => fav === action.payload)
+        favorites: state.favorites.favorites.filter(fav => fav === action.payload)
       };
     case SEARCH_POKEMON:
       return {
