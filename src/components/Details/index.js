@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel, Grid, Row, Col, Tag, Icon } from 'rsuite';
@@ -7,10 +7,15 @@ import * as FavoritesActions from '../../actions/pokemon';
 import './styles.css'
 
 const Details = ({ pokemon, addToFavorite, favorites }) => {
-  if (!pokemon.name || pokemon.name === '') return null;
 
-  const isFavorite = () => favorites.find(fav => fav.name === pokemon.name);
-  const fav = isFavorite();
+  const [fav, setFav] = useState(false);  
+  useEffect(() => {
+    const isFavorite = favorites.find(fav => fav.name === pokemon.name);
+    if (isFavorite) setFav(true);
+    else setFav(false);
+  }, [favorites, pokemon]);
+  
+  if (!pokemon.name || pokemon.name === '') return null;
 
   return (
     <Grid>
