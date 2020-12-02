@@ -1,0 +1,10 @@
+.search-bar__centered {
+  display: flex;
+  justify-content: center;
+  margin: 36px 0;
+};
+
+.search-bar__button {
+  margin-top: 15px;
+  width: 100%;
+}

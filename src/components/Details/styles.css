@@ -1,0 +1,13 @@
+.details__centered {
+  display: flex;
+  justify-content: center;
+};
+
+.details__centered img {
+  width: 120px;
+  height: 120px;
+}
+
+.details__centered p {
+  margin-right: 15px;
+}

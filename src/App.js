@@ -6,7 +6,7 @@ import configureStore from './store/configureStore';
 import SearchBar from './components/SearchBar';
 import Details from './components/Details';
 
-import './App.css';
+import 'rsuite/dist/styles/rsuite-default.css';
 
 const App = () => {
   const { store, persistor } = configureStore();
