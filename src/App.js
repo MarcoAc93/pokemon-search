@@ -3,6 +3,9 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import configureStore from './store/configureStore';
 
+import SearchBar from './components/SearchBar';
+import Details from './components/Details';
+
 import './App.css';
 
 const App = () => {
@@ -10,7 +13,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        This is my app!!!
+        <SearchBar />
+        <Details />
       </PersistGate>
     </Provider>
   )
