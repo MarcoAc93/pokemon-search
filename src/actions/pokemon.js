@@ -1,6 +1,7 @@
 import {
   SEARCH_POKEMON, SEARCH_POKEMON_ERROR,
   ADD_FAVORITE,
+  REMOVE_FAVORITE,
 } from '../constants/favorites';
 import { searchPokemonRequest } from '../services/index';
 
@@ -9,6 +10,8 @@ const searchAction = payload => ({ type: SEARCH_POKEMON, payload });
 const searchActionError = payload => ({ type: SEARCH_POKEMON_ERROR, payload });
 
 const addFavoriteAction = payload => ({ type: ADD_FAVORITE, payload })
+
+const removeFavoriteAction = payload => ({ type: REMOVE_FAVORITE, payload })
 
 export const searchPokemon = (name, callback) => (
   async dispatch => {
@@ -21,5 +24,7 @@ export const searchPokemon = (name, callback) => (
     }
   }
 );
+
+export const removeFavorite = (index) => dispatch => dispatch(removeFavoriteAction(index))
 
 export const addToFavorite = pokemon => dispatch => dispatch(addFavoriteAction(pokemon))

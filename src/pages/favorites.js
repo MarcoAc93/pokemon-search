@@ -1,16 +1,23 @@
 import React from 'react';
-import { Grid, Row, Col, List } from 'rsuite';
+import { Grid, Row, Col, List, Tag, Button } from 'rsuite';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import * as Actions from '../actions/pokemon';
+import { bindActionCreators } from 'redux';
 
-const Favorites = ({ favorites }) => (
+const Favorites = ({ favorites, removeFavorite }) => (
   <Grid>
     <Row className="search-bar__centered">
       <Col xs={12}>
         <List hover>
           {favorites.length > 0 && favorites.map((fav, index) => (
             <List.Item key={index}>
-              {fav.name}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <img src={fav.sprites.front_default} alt={fav.name} />
+                  <Tag>{fav.name}</Tag>
+                </div>
+                <Button appearance="default" style={{ width: 76, height: 40 }} onClick={() => removeFavorite(index)}>Remove</Button>
+              </div>
             </List.Item>
           ))}
         </List>
@@ -21,4 +28,6 @@ const Favorites = ({ favorites }) => (
 
 const mapStateToProps = state => ({ favorites: state.favorites.favorites });
 
-export default connect(mapStateToProps)(Favorites);
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

@@ -26,7 +26,7 @@ const favoritesReducer = (state = initialState, action) => {
     case REMOVE_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.favorites.filter(fav => fav === action.payload)
+        favorites: state.favorites.filter((fav, index) => index !== action.payload)
       };
     case SEARCH_POKEMON:
       return {
