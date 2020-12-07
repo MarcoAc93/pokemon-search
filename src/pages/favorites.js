@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 const Favorites = ({ favorites }) => (
   <Grid>
-    {console.log(favorites)}
     <Row className="search-bar__centered">
       <Col xs={12}>
         <List hover>
