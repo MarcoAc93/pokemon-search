@@ -1,0 +1,10 @@
+.favorites__center-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorites__center-remove-button {
+  width: 76px;
+  height: 40px;
+}

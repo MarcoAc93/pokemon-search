@@ -11,3 +11,8 @@
 .details__centered p {
   margin-right: 15px;
 }
+
+.details__centered-panel {
+  display: flex;
+  flex-direction: column;
+}

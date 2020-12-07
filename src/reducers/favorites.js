@@ -21,7 +21,9 @@ const favoritesReducer = (state = initialState, action) => {
           show: false,
           message: ''
         },
-        favorites: state.favorites.find(fav => fav.name === action.payload.name) ? [...state.favorites] : [...state.favorites, action.payload],
+        favorites: state.favorites.find(fav => fav.name === action.payload.name)
+          ? [...state.favorites]
+          : [...state.favorites, action.payload],
       };
     case REMOVE_FAVORITE:
       return {

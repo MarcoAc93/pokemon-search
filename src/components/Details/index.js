@@ -21,7 +21,7 @@ const Details = ({ pokemon, addToFavorite, favorites }) => {
     <Grid>
       <Row className="details__centered">
         <Col xs={12}>
-          <Panel header="Details" bordered style={{ display: 'flex', flexDirection: 'column' }}>
+          <Panel header="Details" bordered className="details__centered-panel">
             <div onClick={() => addToFavorite(pokemon)}>
               <Icon icon="star" size="2x" style={{ color: fav ? 'gold' : 'gray' }} />
             </div>
