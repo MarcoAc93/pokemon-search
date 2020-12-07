@@ -18,7 +18,9 @@ const Favorites = ({ favorites, removeFavorite }) => (
                   <img src={fav.sprites.front_default} alt={fav.name} />
                   <Tag>{fav.name}</Tag>
                 </div>
-                <Button appearance="default" className="favorites__center-remove-button" onClick={() => removeFavorite(index)}>Remove</Button>
+                <Button appearance="default" className="favorites__center-remove-button" onClick={() => removeFavorite(index)}>
+                  Remove
+                </Button>
               </div>
             </List.Item>
           ))}
