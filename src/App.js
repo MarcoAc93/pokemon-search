@@ -3,8 +3,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import configureStore from './store/configureStore';
 
-import SearchBar from './components/SearchBar';
-import Details from './components/Details';
+import Router from './router';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 
@@ -13,8 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <SearchBar />
-        <Details />
+        <Router />
       </PersistGate>
     </Provider>
   )
